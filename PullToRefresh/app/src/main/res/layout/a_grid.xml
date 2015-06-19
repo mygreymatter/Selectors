@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.mayo.pulltorefresh.ActGrid">
+
+    -
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="#1565c0"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="PullDownListView"
+        android:textColor="#fff"/>
+
+    <com.mayo.pulltorefresh.gridview.RefreshLoadGridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#424242"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:id="@+id/layoutHeader"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true">
+
+            <com.mayo.pulltorefresh.listview.RefreshingView
+                android:id="@+id/pullDownView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutFooter"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true">
+
+            <com.mayo.pulltorefresh.listview.LoadingView
+                android:id="@+id/pullUpView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"/>
+
+
+        </RelativeLayout>
+    </com.mayo.pulltorefresh.gridview.RefreshLoadGridView>
+
+
+</RelativeLayout>
