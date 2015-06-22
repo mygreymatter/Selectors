@@ -15,8 +15,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.mayo.pulltorefresh.listview.LoadingView;
-import com.mayo.pulltorefresh.listview.PullDownListView;
-import com.mayo.pulltorefresh.listview.PullDownListView.OnPullHeightChangeListener;
+import com.mayo.pulltorefresh.listview.RefreshLoadListView;
+import com.mayo.pulltorefresh.listview.RefreshLoadListView.OnPullHeightChangeListener;
 import com.mayo.pulltorefresh.listview.RefreshingView;
 
 public class ActMain extends Activity {
@@ -48,8 +48,8 @@ public class ActMain extends Activity {
 		public View getView(int position, View convertView, ViewGroup parent) {
             color = getResources().getColor(android.R.color.darker_gray);
 			TextView textView = new TextView(mContext);
-			textView.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT, dp2px(mContext, 50)));
-			textView.setText(adapterData[position]);
+            textView.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT, dp2px(mContext, 300)));
+            textView.setText(adapterData[position]);
 			textView.setTextSize(20);
 			textView.setTextColor(0xff000000);
 			textView.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
@@ -67,16 +67,16 @@ public class ActMain extends Activity {
 		setContentView(R.layout.a_main);
 
         mContext = this;
-		final PullDownListView pullDownListView = (PullDownListView)findViewById(R.id.pullDownListView);
-		final RefreshingView refreshingView = (RefreshingView) findViewById(R.id.pullDownView);
+        final RefreshLoadListView refreshLoadListView = (RefreshLoadListView) findViewById(R.id.pullDownListView);
+        final RefreshingView refreshingView = (RefreshingView) findViewById(R.id.pullDownView);
 		final LoadingView loadingView = (LoadingView) findViewById(R.id.pullUpView);
 
 		final RotateAnimation rotate = new RotateAnimation(0 ,300);
 		rotate.setDuration(500);
 
-		pullDownListView.getListView().setAdapter(mAdapter);
+        refreshLoadListView.getListView().setAdapter(mAdapter);
 
-		pullDownListView.setOnPullHeightChangeListener(new OnPullHeightChangeListener(){
+        refreshLoadListView.setOnPullHeightChangeListener(new OnPullHeightChangeListener() {
 
 			@Override
 			public void onTopHeightChange(int headerHeight,
@@ -96,8 +96,8 @@ public class ActMain extends Activity {
 					progress = 1.0f;
 				}
 
-				if (!pullDownListView.isRefreshing()) {
-					refreshingView.setProgress(progress);
+                if (!refreshLoadListView.isRefreshing()) {
+                    refreshingView.setProgress(progress);
 				}
 			}
 
@@ -118,8 +118,8 @@ public class ActMain extends Activity {
 					progress = 1.0f;
 				}
 
-				if (!pullDownListView.isRefreshing()) {
-					loadingView.setProgress(progress);
+                if (!refreshLoadListView.isRefreshing()) {
+                    loadingView.setProgress(progress);
 				}
 
 			}
@@ -138,8 +138,8 @@ public class ActMain extends Activity {
 					@Override
 					public void run() {
 						//once, the loading is done, pullup the listview
-						pullDownListView.pullUp();
-						if (isTop) {
+                        refreshLoadListView.pullUp();
+                        if (isTop) {
 							refreshingView.stopAnimate();
 						} else {
 							loadingView.stopAnimate();
