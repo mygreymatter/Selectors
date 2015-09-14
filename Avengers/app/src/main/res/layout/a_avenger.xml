@@ -1,0 +1,16 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.mayo.avengers.ActAvenger">
+
+    <ImageView
+        android:id="@+id/avenger_pic_big"
+        android:transitionName="@string/avenger"
+        android:src="@drawable/ic_iron_man"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_height="400dp"/>
+
+</RelativeLayout>
